@@ -1,7 +1,10 @@
 <%= turbo_frame_tag "line_items" do %>
-  <div class="line-item-list">
-   
-    <% @line_items.each do |line_item| %>
+  <% if @page.zero? %>
+    <%= render partial: 'line_items/header', locals: { total_billable: @total_billable, total_line_items: @total_line_items } %>
+  <% end %>
+
+  <div class="line-item-list"> 
+    <% @line_items_paginated.each do |line_item| %>
       <div class="line-item-row">
         <div class="name" title="<%= line_item.name %>"><%= line_item.name %></div>
         <div class="campaign-name" title="<%= line_item.campaign.name %>"><%= line_item.campaign.name %></div>
@@ -10,10 +13,12 @@
         <div class="adjustments"><%= number_to_currency line_item.adjustments %></div>
         <div class="billable"><%= number_to_currency line_item.billable_amount %></div>
       </div>
-    <% end %>
-
-    <%= turbo_frame_tag "line_items", loading: :lazy, src: line_items_path(params: { page: @page + 1 }) do %>
-      Loading...
-    <% end %>
+    <% end %>   
   </div>
+
+   <% if @page < @max_page %>
+      <%= turbo_frame_tag "line_items", loading: :lazy, src: line_items_path(params: { page: @page + 1 }) do %>
+        Loading...
+      <% end %>
+    <% end %>
 <% end %>

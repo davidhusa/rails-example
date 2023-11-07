@@ -1,13 +1,5 @@
 <h1>Line Items</h1>
 
-<div class="line-item-header">
-  <div class="name">Name</div>
-  <div class="campaign-name">Campaign</div>
-  <div class="booked-amount">Booked</div>
-  <div class="actual-amount">Actual</div>
-  <div class="adjustments">Adjustments</div>
-  <div class="billable">Billable</div>
-</div>
 <%= turbo_frame_tag "line_items", src: line_items_path do %>
   Loading...
 <% end %>

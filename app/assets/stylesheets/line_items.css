@@ -34,7 +34,9 @@ body {
     width: 100px;
   }
 }
-.line-item-list, .line-item-header {
 
+.line-item-header {
+  position: sticky;
+  top: 0px;
+  background-color: #F2F3F4;
 }
-
