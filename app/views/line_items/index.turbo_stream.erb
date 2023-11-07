@@ -1,7 +1,5 @@
-<%= turbo_frame_tag "line_items" do %>
+<%= turbo_stream.append "line_items" do %>
   <% if @page.zero? %>
-    <%= render partial: 'line_items/filters' %>
-
     <%= render partial: 'line_items/header', locals: { total_billable: @total_billable, total_line_items: @total_line_items } %>
   <% end %>
 
@@ -18,11 +16,13 @@
     <% end %>
   </div>
 
-   <% if @page < @max_page %>
-      <%= turbo_frame_tag "line_items", 
+  <% if @page < @max_page %>
+    <%= turbo_stream.replace "more_line_items" do %>
+      <%= turbo_frame_tag "more_line_items",
                           loading: :lazy, 
-                          src: line_items_path(params: { page: @page + 1, name_filter: params[:name_filter], campaign_name_filter: params[:campaign_name_filter] }) do %>
-        Loading...
-      <% end %>
+                          src: line_items_path(format: :turbo_stream, params: { 
+                            page: @page + 1, name_filter: params[:name_filter], campaign_name_filter: params[:campaign_name_filter] 
+                          })  %>
     <% end %>
+  <% end %>
 <% end %>

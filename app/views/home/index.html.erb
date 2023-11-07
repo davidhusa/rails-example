@@ -1,5 +1,9 @@
 <h1>Invoice</h1>
 
-<%= turbo_frame_tag "line_items", src: line_items_path do %>
-  Loading...
-<% end %>
+<%= render partial: 'line_items/filters' %>
+
+<div id="line_items"></div>
+
+<%= turbo_frame_tag "more_line_items",
+                    src: line_items_path(format: :turbo_stream, params: { name_filter: params[:name_filter], campaign_name_filter: params[:campaign_name_filter] }),
+                    loading: :lazy %>

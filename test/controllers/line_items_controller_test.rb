@@ -2,7 +2,7 @@ require "test_helper"
 
 class LineItemsControllerTest < ActionDispatch::IntegrationTest
   test "works with no filter" do
-    get line_items_path
+    get line_items_path(format: :turbo_stream)
     assert_response :success
 
     assert_equal 3, assigns(:line_items).size
@@ -13,7 +13,7 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "works with line item name filter" do
-    get line_items_path(params: { name_filter: "Item" })
+    get line_items_path(format: :turbo_stream, params: { name_filter: "Item" })
     assert_response :success
 
     assert_equal 2, assigns(:line_items).size
@@ -24,7 +24,7 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
    test "works with campaign name filter" do
-    get line_items_path(params: { campaign_name_filter: "Two" })
+    get line_items_path(format: :turbo_stream, params: { campaign_name_filter: "Two" })
     assert_response :success
 
     assert_equal 2, assigns(:line_items).size
@@ -35,7 +35,7 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "work with both filters" do
-    get line_items_path(params: { name_filter: "Item", campaign_name_filter: "Two" })
+    get line_items_path(format: :turbo_stream, params: { name_filter: "Item", campaign_name_filter: "Two" })
     assert_response :success
 
     assert_equal 1, assigns(:line_items).size
