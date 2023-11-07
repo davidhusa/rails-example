@@ -1,0 +1,19 @@
+<%= turbo_frame_tag "line_items" do %>
+  <div class="line-item-list">
+   
+    <% @line_items.each do |line_item| %>
+      <div class="line-item-row">
+        <div class="name" title="<%= line_item.name %>"><%= line_item.name %></div>
+        <div class="campaign-name" title="<%= line_item.campaign.name %>"><%= line_item.campaign.name %></div>
+        <div class="booked-amount"><%= number_to_currency line_item.booked_amount %></div>
+        <div class="actual-amount"><%= number_to_currency line_item.actual_amount %></div>
+        <div class="adjustments"><%= number_to_currency line_item.adjustments %></div>
+        <div class="billable"><%= number_to_currency line_item.billable_amount %></div>
+      </div>
+    <% end %>
+
+    <%= turbo_frame_tag "line_items", loading: :lazy, src: line_items_path(params: { page: @page + 1 }) do %>
+      Loading...
+    <% end %>
+  </div>
+<% end %>

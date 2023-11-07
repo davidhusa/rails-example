@@ -1,3 +1,3 @@
 class Campaign < ApplicationRecord
-  has_many :line_items, dependant: :destroy
+  has_many :line_items, dependent: :destroy
 end
