@@ -4,8 +4,21 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  campaign_id: 1
+  name: "An item"
+  booked_amount: 1123.211
+  actual_amount: 1123.554
+  adjustments: -321.23
+two:
+  campaign_id: 2
+  name: "Another item"
+  booked_amount: 1.0
+  actual_amount: 1.0
+  adjustments: 0
+three:
+  campaign_id: 2
+  name: "Something else"
+  booked_amount: 20.233
+  actual_amount: 124.214
+  adjustments: 123.123

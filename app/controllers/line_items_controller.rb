@@ -17,7 +17,7 @@ class LineItemsController < ApplicationController
   end
 
   def set_page(line_items)
-    @max_page = line_items.count.to_f / PAGE_SIZE
+    @max_page = (line_items.count.to_f / PAGE_SIZE).to_i
     @page = params[:page].present? ? params[:page].to_i : 0
   end
 

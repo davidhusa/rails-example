@@ -8,8 +8,8 @@
   <div class="line-item-list"> 
     <% @line_items_paginated.each do |line_item| %>
       <div class="line-item-row">
-        <div class="col name" title="<%= line_item.name %>"><%= line_item.name %></div>
-        <div class="col campaign-name" title="<%= line_item.campaign.name %>"><%= line_item.campaign.name %></div>
+        <div class="col name"><%= line_item.name %></div>
+        <div class="col campaign-name"><%= line_item.campaign.name %></div>
         <div class="col booked-amount"><%= number_to_currency line_item.booked_amount %></div>
         <div class="col actual-amount"><%= number_to_currency line_item.actual_amount %></div>
         <div class="col adjustments"><%= number_to_currency line_item.adjustments %></div>
