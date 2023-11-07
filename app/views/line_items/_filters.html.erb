@@ -1,0 +1,16 @@
+<h2>Filters</h2>
+
+<%= form_tag(line_items_path, method: :get) do %>
+  <div>
+    <%= label_tag 'name_filter', "Line item name:" %>
+    <%= text_field_tag 'name_filter', params[:name_filter] %>
+  </div>
+  <div>
+    <%= label_tag 'campaign_name_filter', "Campaign name:" %>
+    <%= text_field_tag 'campaign_name_filter', params[:campaign_name_filter] %>
+  </div>
+  <div>
+    <%= submit_tag "Filter" %>
+    <%= link_to button_tag("Reset"), line_items_path %>
+  </div>
+<% end %>

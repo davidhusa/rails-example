@@ -1,5 +1,7 @@
 <%= turbo_frame_tag "line_items" do %>
   <% if @page.zero? %>
+    <%= render partial: 'line_items/filters' %>
+
     <%= render partial: 'line_items/header', locals: { total_billable: @total_billable, total_line_items: @total_line_items } %>
   <% end %>
 
@@ -13,11 +15,13 @@
         <div class="adjustments"><%= number_to_currency line_item.adjustments %></div>
         <div class="billable"><%= number_to_currency line_item.billable_amount %></div>
       </div>
-    <% end %>   
+    <% end %>
   </div>
 
    <% if @page < @max_page %>
-      <%= turbo_frame_tag "line_items", loading: :lazy, src: line_items_path(params: { page: @page + 1 }) do %>
+      <%= turbo_frame_tag "line_items", 
+                          loading: :lazy, 
+                          src: line_items_path(params: { page: @page + 1, name_filter: params[:name_filter], campaign_name_filter: params[:campaign_name_filter] }) do %>
         Loading...
       <% end %>
     <% end %>
