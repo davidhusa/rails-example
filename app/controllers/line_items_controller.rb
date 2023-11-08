@@ -1,5 +1,5 @@
 class LineItemsController < ApplicationController
-  PAGE_SIZE = 250
+  PAGE_SIZE = 30
 
   def index
     set_line_items
